@@ -1,7 +1,4 @@
-
-  const $btn = document.querySelectorAll("button.btn-num"),
-    $operator = document.getElementsByClassName("operator"),
-    $btnClear = document.querySelector(".btn-clear"),
+  const $btnClear = document.querySelector(".btn-clear"),
     $btnEqual = document.querySelector(".operator-equal"),
     $btnDelete = document.querySelector(".btn-backspace"),
     $decimal = document.querySelector(".decimal"),
@@ -16,20 +13,15 @@
 
   document.addEventListener("click", e => {
     if(e.target.matches(".btn-num")){
-        if($currentDisplay.textContent === "0") {
-          $currentDisplay.textContent = "";
-        }
-        /* STORE DISPLAY VALUE  */
-        if(operator === ""){
-          $currentDisplay.textContent += e.target.value;
-          firstNum = $currentDisplay.textContent;
-        } else {
-          $currentDisplay.textContent += e.target.value;
-          secondNum = $currentDisplay.textContent;
-        }
-
-        console.log(`primer numero: ${firstNum}`);
-        console.log(`segundo numero: ${secondNum}`);
+      if($currentDisplay.textContent === "0") $currentDisplay.textContent = "";
+      /* STORE DISPLAY VALUE  */
+      if(operator === ""){
+        $currentDisplay.textContent += e.target.value;
+        firstNum = $currentDisplay.textContent;
+      } else {
+        $currentDisplay.textContent += e.target.value;
+        secondNum = $currentDisplay.textContent;
+      }
     }
     
     if(e.target.matches(".operator")){
@@ -39,16 +31,15 @@
       };
       if(operator !== ""){
         total = operate(firstNum, secondNum, operator);
-        $lastDisplay.textContent = `${total} ${e.target.value}`
+        $lastDisplay.textContent = `${total} ${e.target.value}`;
         operator = e.target.value;
         firstNum = total;
-
       } else {
         operator = e.target.value;
       }
 
       if($lastDisplay.textContent === ""){
-        /* SHOW LAST OPERATION */
+        /* Display last operation */
         $lastDisplay.textContent = `${firstNum}  ${operator}`;
       }
 
@@ -57,48 +48,48 @@
       };
     }
   });
-/****** DECIMAL ******/
+/****** Add decimal ******/
 $decimal.addEventListener("click", e => {
   if($currentDisplay.textContent === "") $currentDisplay.textContent = "0"
   if($currentDisplay.textContent.includes(".")) return;
   $currentDisplay.textContent += ".";
 });
 
-  $btnEqual.addEventListener("click", e => {
-    if(firstNum !== ""){
-      if($currentDisplay.textContent !== ""){
-        total = operate(firstNum, secondNum, operator);
-        $lastDisplay.textContent = total;
+/****** Display total ******/
+$btnEqual.addEventListener("click", e => {
+  if(firstNum !== ""){
+    if($currentDisplay.textContent !== ""){
+      total = operate(firstNum, secondNum, operator);
+      $lastDisplay.textContent = total;
 
-        $currentDisplay.textContent = "";
-        console.log(total);
-      }
-    };
-    return;
-  });
+      $currentDisplay.textContent = "";
+    }
+  };
+  return;
+});
 
-/****** CLEAR BUTTON ******/
-  $btnClear.addEventListener("click", e => {
-    firstNum = "";
-    secondNum = "";
-    operator = "";
+  /****** CLEAR BUTTON ******/
+$btnClear.addEventListener("click", e => {
+  firstNum = "";
+  secondNum = "";
+  operator = "";
 
-    $currentDisplay.textContent = 0;
-    $lastDisplay.textContent = "";
-  })
+  $currentDisplay.textContent = 0;
+  $lastDisplay.textContent = "";
+})
 
   /***** DELETE BTN ******/
-  $btnDelete.addEventListener("click", e => {
-    let numDelete = String(firstNum).slice(0, -1);
-    firstNum = numDelete;
+$btnDelete.addEventListener("click", e => {
+  let numDelete = String(firstNum).slice(0, -1);
+  firstNum = numDelete;
 
+  $currentDisplay.textContent = firstNum;
+
+  if(numDelete.length < 1){
+    firstNum = 0;
     $currentDisplay.textContent = firstNum;
-
-    if(numDelete.length < 1){
-      firstNum = 0;
-      $currentDisplay.textContent = firstNum;
-    }
-  });
+  }
+});
 
 
 /******  OPERATOR FUNCTIONS ******/
@@ -129,6 +120,5 @@ function operate(firstNum, secondNum, operator){
   if(operator === "+") return add(firstNum, secondNum);
   if(operator === "-") return substract(firstNum, secondNum);
   if(operator === "x") return multiply(firstNum, secondNum);
-  if(operator === "÷") return divide(firstNum, secondNum);
- 
+  if(operator === "÷") return divide(firstNum, secondNum); 
 };

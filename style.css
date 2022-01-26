@@ -1,6 +1,6 @@
 :root {
   --background: #bdbdbd;
-  --font: #222;
+  --font: rgb(59, 59, 59);
   --calculator: #867575;
   --calc-screen: #eee;
   --btn: #dadada;
@@ -43,6 +43,9 @@ html {
   padding: 20px;
 }
 /****** DISPLAY ******/
+.calc-screen {
+  color: var(--font);
+}
 .lastDisplay {
   display: inline-block;
   margin-right: 5px;
