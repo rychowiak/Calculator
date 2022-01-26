@@ -1,0 +1,95 @@
+:root {
+  --background: #bdbdbd;
+  --font: #222;
+  --calculator: #867575;
+  --calc-screen: #eee;
+  --btn: #dadada;
+  --btn-hover: #beb8b8;
+  --btn-red: #ff4a4a;
+  --btn-operator: #3a75ce;
+  --btn-blue-hover: #3265b1;
+}
+html {
+  box-sizing: border-box;
+  font-size: 2rem;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  margin-top: 50px;
+}
+.calc-screen {
+  background-color: var(--calc-screen);
+  border: 2px solid #42494d;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.calculator {
+  background-color: var(--calculator);
+  position: absolute;
+  border: 2px black solid;
+  border-radius: 15px;
+  width: 400px;
+  padding: 20px;
+}
+/****** DISPLAY ******/
+.lastDisplay {
+  display: inline-block;
+  margin-right: 5px;
+}
+div.currentDisplay {
+  padding: 5px;
+  height: 45px;
+}
+
+/****** BUTTONS ******/
+.btn {
+  background: var(--btn);
+  border: 2px #42494d solid;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 20px;
+  font-size: 20px;
+}
+.btn:hover {
+  background: var(--btn-hover);
+}
+.operator {
+  color: var(--btn-operator);
+  font-size: 0.7rem;
+}
+.operator-equal {
+  color: white;
+  background: var(--btn-operator);
+}
+.operator-equal:hover {
+  background-color: var(--btn-blue-hover);
+}
+.operator-dot {
+  color: var(--font);
+}
+.operator-backspace {
+  color: var(--btn-red);
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+.btn-zero {
+  grid-column: span 2;
+}
+.row-2 {
+  grid-row: span 2;
+}
