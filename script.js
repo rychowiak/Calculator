@@ -14,7 +14,7 @@
   document.addEventListener("click", e => {
     if(e.target.matches(".btn-num")){
       if($currentDisplay.textContent === "0") $currentDisplay.textContent = "";
-      /* STORE DISPLAY VALUE  */
+      /* Store display value  */
       if(operator === ""){
         $currentDisplay.textContent += e.target.value;
         firstNum = $currentDisplay.textContent;
